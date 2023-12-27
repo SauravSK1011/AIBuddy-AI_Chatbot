@@ -20,14 +20,14 @@ The AIBuddy Flutter App is a user-friendly interface designed to interact with t
 
 ## Screenshots
 
-![WhatsApp Image 2023-12-28 at 00 03 02_adc1031c](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/5a44c09c-69e9-4994-b8a6-10854003baa3 | width=100)
-![WhatsApp Image 2023-12-28 at 00 03 01_b3d1bb83](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/424427fe-3e5e-45e4-aed5-e0a5e9d22dba | width=100)
-![WhatsApp Image 2023-12-28 at 00 03 01_6291927c](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/f6ca8a44-ef0b-4efe-820a-cd951d7b2024 | width=100)
-![WhatsApp Image 2023-12-28 at 00 03 01_8684eb8d](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/33696a78-e5e2-46eb-b493-ee6bd4b9ac60 | width=100)
-![WhatsApp Image 2023-12-28 at 00 03 00_26851168](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/36c990ad-05d6-4548-8fb4-0c37101ae3d9 | width=100)
-![WhatsApp Image 2023-12-28 at 00 03 00_657cb910](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/468423e9-4b75-4cc5-9608-d4d2f68b213e | width=100)
-![WhatsApp Image 2023-12-28 at 00 02 59_e21e3cc8](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/b2e89c2a-1eee-4a51-a1b7-dde1f977d6c1 | width=100)
-![WhatsApp Image 2023-12-28 at 00 02 59_7656f78a](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/e8026322-eae6-48dc-9a08-7d72ba87336b | width=100)
+![WhatsApp Image 2023-12-28 at 00 03 00_657cb910](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/a61a0a58-91e8-4d95-a114-443cf2f9eaf9)
+![WhatsApp Image 2023-12-28 at 00 02 59_e21e3cc8](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/78598448-d285-4ad6-8b36-5c5ecb80ba49)
+![WhatsApp Image 2023-12-28 at 00 03 01_b3d1bb83](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/81e47924-a55e-4204-a14b-f519466657ef)
+![WhatsApp Image 2023-12-28 at 00 03 01_6291927c](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/32871de2-7121-4f7c-b349-54b939365f77)
+![WhatsApp Image 2023-12-28 at 00 02 59_7656f78a](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/bfb3e360-21f1-4bec-aa99-b9a3d855c809)
+![WhatsApp Image 2023-12-28 at 00 03 02_adc1031c](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/81591b69-061f-45c2-b366-b306a4f4f3e9)
+![WhatsApp Image 2023-12-28 at 00 03 01_8684eb8d](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/accc8064-1a86-416d-ac8c-4b5398052411)
+![WhatsApp Image 2023-12-28 at 00 03 00_26851168](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/8d5ff87d-bafa-4c17-9e08-c754325836b8)
 
 
 ## Getting Started
