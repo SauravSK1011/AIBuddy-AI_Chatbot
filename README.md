@@ -29,6 +29,8 @@ The AIBuddy Flutter App is a user-friendly interface designed to interact with t
 ![WhatsApp Image 2023-12-28 at 00 03 01_8684eb8d](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/accc8064-1a86-416d-ac8c-4b5398052411)
 ![WhatsApp Image 2023-12-28 at 00 03 00_26851168](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/8d5ff87d-bafa-4c17-9e08-c754325836b8)
 
+## Download APP
+[Download](https://drive.google.com/file/d/113lo3dpr9XMmwQ9Mguav5OuFujy_RuWL/view?usp=drive_link)
 
 ## Getting Started
 
