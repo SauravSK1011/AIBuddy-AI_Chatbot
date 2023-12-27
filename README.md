@@ -20,7 +20,15 @@ The AIBuddy Flutter App is a user-friendly interface designed to interact with t
 
 ## Screenshots
 
-![AIBuddy App Screenshots](screenshots/aibuddy_app_screenshots.png)
+![WhatsApp Image 2023-12-28 at 00 03 02_adc1031c](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/5a44c09c-69e9-4994-b8a6-10854003baa3)
+![WhatsApp Image 2023-12-28 at 00 03 01_b3d1bb83](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/424427fe-3e5e-45e4-aed5-e0a5e9d22dba)
+![WhatsApp Image 2023-12-28 at 00 03 01_6291927c](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/f6ca8a44-ef0b-4efe-820a-cd951d7b2024)
+![WhatsApp Image 2023-12-28 at 00 03 01_8684eb8d](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/33696a78-e5e2-46eb-b493-ee6bd4b9ac60)
+![WhatsApp Image 2023-12-28 at 00 03 00_26851168](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/36c990ad-05d6-4548-8fb4-0c37101ae3d9)
+![WhatsApp Image 2023-12-28 at 00 03 00_657cb910](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/468423e9-4b75-4cc5-9608-d4d2f68b213e)
+![WhatsApp Image 2023-12-28 at 00 02 59_e21e3cc8](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/b2e89c2a-1eee-4a51-a1b7-dde1f977d6c1)
+![WhatsApp Image 2023-12-28 at 00 02 59_7656f78a](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot/assets/91833793/e8026322-eae6-48dc-9a08-7d72ba87336b)
+
 
 ## Getting Started
 
@@ -31,7 +39,7 @@ To run the AIBuddy Flutter App locally, follow these steps:
 2. Clone the repository:
 
    ```bash
-   git clone [https://github.com/your-username/AIBuddy-Flutter-App.git](https://github.com/SauravSK1011/AIBuddy-AI_Chatbot.git)
+   git clone https://github.com/SauravSK1011/AIBuddy-AI_Chatbot.git
    ```
 
 3. Navigate to the project directory:
@@ -53,9 +61,6 @@ To run the AIBuddy Flutter App locally, follow these steps:
    ```bash
    flutter run
    ```
-## Screenshots
-
-
 
 ## Usage
 
