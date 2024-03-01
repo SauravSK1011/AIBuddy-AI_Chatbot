@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 
 import '../Constants/MyColors.dart';
@@ -24,7 +23,6 @@ class _WebPageSummaryState extends State<WebPageSummary> {
     double screen_h = MediaQuery.of(context).size.height;
     String textinput = "";
     TextEditingController promptController = TextEditingController();
-promptController.text="Enter Web Link";
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
@@ -49,7 +47,7 @@ promptController.text="Enter Web Link";
                       width: screen_w,
                       child: Center(
                         child: Text(
-                         MyStr.appname,
+                          MyStr.appname,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: MyFontSizes.appnamesize),
@@ -122,11 +120,12 @@ promptController.text="Enter Web Link";
                         child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        decoration: InputDecoration(hintText: "Enter Url"),
                         controller: promptController,
                         onChanged: (text) {
                           textinput = text;
                         },
-                      ),  
+                      ),
                     )),
                     SizedBox(
                       width: 10,

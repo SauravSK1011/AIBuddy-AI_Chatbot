@@ -24,7 +24,7 @@ class _ImageGenState extends State<ImageGen> {
   Widget build(BuildContext context) {
     double screen_w = MediaQuery.of(context).size.width;
     double screen_h = MediaQuery.of(context).size.height;
-    String textinput = "Type a Prompt";promptController.text="Type a Prompt";
+    String textinput = "Type a Prompt";
 
     return SafeArea(
         child: Scaffold(
@@ -50,7 +50,7 @@ class _ImageGenState extends State<ImageGen> {
                       width: screen_w,
                       child: Center(
                         child: Text(
-                         MyStr.appname,
+                          MyStr.appname,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: MyFontSizes.appnamesize),
@@ -137,6 +137,7 @@ class _ImageGenState extends State<ImageGen> {
                         child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        decoration: InputDecoration(hintText: "Enter Prompt"),
                         controller: promptController,
                         onChanged: (text) {
                           textinput = text;

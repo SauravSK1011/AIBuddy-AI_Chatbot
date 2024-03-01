@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
 
-
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:open_filex/open_filex.dart';
@@ -41,12 +40,10 @@ class _FileSummaryState extends State<FileSummary> {
     });
   }
 
-
   Widget build(BuildContext context) {
     double screen_w = MediaQuery.of(context).size.width;
     double screen_h = MediaQuery.of(context).size.height;
     TextEditingController promptController = TextEditingController();
-promptController.text="Ask Question";
     String textinput = "";
     return SafeArea(
         child: Scaffold(
@@ -72,7 +69,7 @@ promptController.text="Ask Question";
                       width: screen_w,
                       child: Center(
                         child: Text(
-                         MyStr.appname,
+                          MyStr.appname,
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: MyFontSizes.appnamesize),
@@ -90,14 +87,19 @@ promptController.text="Ask Question";
                       style: TextStyle(color: Colors.white, fontSize: 30),
                     ),
                   ),
-                   lodedsreen==0?   InkWell(onTap: (){setState(() {
-                    lodedsreen=2;
-                  });
-                  getfile();},
-                    child: boxw(screen_w + screen_w / 1.5, screen_h - 100, "add.png",
-                        "Add Image", ""),
-                  ):Container(),
-                  lodedsreen==1
+                  lodedsreen == 0
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              lodedsreen = 2;
+                            });
+                            getfile();
+                          },
+                          child: boxw(screen_w + screen_w / 1.5, screen_h - 100,
+                              "add.png", "Add Image", ""),
+                        )
+                      : Container(),
+                  lodedsreen == 1
                       ? Expanded(
                           child: Column(
                             children: [
@@ -180,7 +182,9 @@ promptController.text="Ask Question";
                             ],
                           ),
                         )
-                      : lodedsreen==2?Center(child: CircularProgressIndicator()):Center(),
+                      : lodedsreen == 2
+                          ? Center(child: CircularProgressIndicator())
+                          : Center(),
                 ]),
           ),
           Align(
@@ -198,6 +202,7 @@ promptController.text="Ask Question";
                         child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        decoration: InputDecoration(hintText: "Enter Prompt"),
                         controller: promptController,
                         onChanged: (text) {
                           textinput = text;

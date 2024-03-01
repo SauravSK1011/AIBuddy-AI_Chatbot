@@ -44,7 +44,7 @@ class _ImageRecognitionState extends State<ImageRecognition> {
   Widget build(BuildContext context) {
     double screen_w = MediaQuery.of(context).size.width;
     double screen_h = MediaQuery.of(context).size.height;
-    String textinput = "";promptController.text="Type a Prompt";
+    String textinput = "";
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
@@ -90,17 +90,22 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                   SizedBox(
                     height: 20,
                   ),
-               lodedsreen==0?   InkWell(onTap: (){setState(() {
-                    lodedsreen=2;
-                  });
-                  getfile();},
-                    child: boxw(screen_w + screen_w / 1.5, screen_h - 100, "add.png",
-                        "Add Image", ""),
-                  ):Container(),
+                  lodedsreen == 0
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              lodedsreen = 2;
+                            });
+                            getfile();
+                          },
+                          child: boxw(screen_w + screen_w / 1.5, screen_h - 100,
+                              "add.png", "Add Image", ""),
+                        )
+                      : Container(),
                   SizedBox(
                     height: 20,
                   ),
-                  lodedsreen==1
+                  lodedsreen == 1
                       ? Expanded(
                           child: Column(
                           children: [
@@ -180,7 +185,9 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                             )
                           ],
                         ))
-                      : lodedsreen==2?Center(child: CircularProgressIndicator()):Center(),
+                      : lodedsreen == 2
+                          ? Center(child: CircularProgressIndicator())
+                          : Center(),
                 ]),
           ),
           Align(
@@ -198,6 +205,7 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                         child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
+                        decoration: InputDecoration(hintText: "Enter Url"),
                         controller: promptController,
                         onChanged: (text) {
                           textinput = text;
