@@ -2,8 +2,8 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:open_filex/open_filex.dart';
+
+import '../Services/SimpleFilePickerService.dart';
 
 import '../Constants/MyColors.dart';
 import '../Constants/MyFontSizes.dart';
@@ -20,26 +20,29 @@ class FileSummary extends StatefulWidget {
 }
 
 class _FileSummaryState extends State<FileSummary> {
-  @override
   List convertation = [];
   bool loded = true;
   int lodedsreen = 0;
 
   late File file;
   void getfile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    File? result = await SimpleFilePickerService.pickFile(context);
     if (result != null) {
-      file = File(result.files.single.path!);
+      file = result;
+      String summery = await FileServices.myfilesummary(context, file);
+      convertation.add(summery);
+      setState(() {
+        lodedsreen = 1;
+      });
     } else {
-      // User canceled the picker
+      // User canceled the picker or there was an error
+      setState(() {
+        lodedsreen = 0;
+      });
     }
-    String summery = await FileServices.myfilesummary(context, file);
-    convertation.add(summery);
-    setState(() {
-      lodedsreen = 1;
-    });
   }
 
+  @override
   Widget build(BuildContext context) {
     double screen_w = MediaQuery.of(context).size.width;
     double screen_h = MediaQuery.of(context).size.height;
@@ -105,7 +108,12 @@ class _FileSummaryState extends State<FileSummary> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  OpenFilex.open(file.path);
+                                  // OpenFilex.open(file.path) is disabled due to compatibility issues
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('File opening is disabled due to compatibility issues'),
+                                    ),
+                                  );
                                 },
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,

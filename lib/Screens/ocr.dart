@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:open_filex/open_filex.dart';
 
 import '../Constants/MyColors.dart';
 import '../Constants/MyFontSizes.dart';
@@ -26,12 +24,6 @@ class _OcrScreenState extends State<OcrScreen> {
   int lodedsreen = 0;
   late File file;
   void getfile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      file = File(result.files.single.path!);
-    } else {
-      // User canceled the picker
-    }
     String summery = await OcrServices.gettext(context, file);
     convertation.add(summery);
     setState(() {
@@ -104,7 +96,12 @@ class _OcrScreenState extends State<OcrScreen> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  OpenFilex.open(file.path);
+                                  // OpenFilex.open(file.path) is disabled due to compatibility issues
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('File opening is disabled due to compatibility issues'),
+                                    ),
+                                  );
                                 },
                                 child: Row(
                                   crossAxisAlignment: CrossAxisAlignment.center,

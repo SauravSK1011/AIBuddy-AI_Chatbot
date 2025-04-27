@@ -1,8 +1,9 @@
 import 'dart:ui';
 
-import 'package:aibuddy/widgets/background.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+
+import 'widgets/background.dart';
 
 import 'Constants/MyColors.dart';
 import 'Constants/MyFontSizes.dart';
@@ -24,7 +25,7 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
- 
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withAlpha(50),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15.0)),
                       ),
@@ -175,8 +176,8 @@ Widget boxwlong(double screenW, double screenH, String imageName,
     String oprationName, String description) {
   return Container(
     decoration: BoxDecoration(
-      color: Colors.white.withOpacity(0.2),
-      borderRadius: BorderRadius.all(Radius.circular(15.0)),
+      color: Colors.white.withAlpha(50),
+      borderRadius: const BorderRadius.all(Radius.circular(15.0)),
     ),
     width: screenW / 1.2,
     height: screenH / 7.5,

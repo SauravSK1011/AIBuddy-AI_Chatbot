@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/sanjaykamtalwar/Documents/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/sanjaykamtalwar/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/sanjaykamtalwar/Documents/Just Projects/test/AIBuddy-AI_Chatbot/android/app/.cxx/Debug/6j483u4u/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/sanjaykamtalwar/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/sanjaykamtalwar/Documents/Just Projects/test/AIBuddy-AI_Chatbot/android/app/.cxx/Debug/6j483u4u/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

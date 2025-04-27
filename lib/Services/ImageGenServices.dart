@@ -4,7 +4,7 @@ import "dart:typed_data";
 import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
 import "package:permission_handler/permission_handler.dart";
-import 'package:path_provider/path_provider.dart';
+import 'SimplePathProvider.dart';
 
 class ImageGenServices1 {
   static Future<Uint8List> generateimage(
@@ -53,7 +53,8 @@ class FileStorage {
       // Redirects it to download folder in android
       _directory = Directory("/storage/emulated/0/Download");
     } else {
-      _directory = await getApplicationDocumentsDirectory();
+      final path = await SimplePathProvider.getTemporaryDirectory();
+      _directory = Directory(path);
     }
 
     final exPath = _directory.path;
