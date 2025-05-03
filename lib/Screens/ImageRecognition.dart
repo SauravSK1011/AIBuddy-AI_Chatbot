@@ -1,10 +1,10 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
 import '../Constants/MyColors.dart';
 import '../Constants/MyFontSizes.dart';
+import '../Services/CameraService.dart';
 import '../Services/ImageRecognitionServices.dart';
 import '../Services/WebServices.dart';
 import '../widgets/background.dart';
@@ -18,34 +18,58 @@ class ImageRecognition extends StatefulWidget {
 }
 
 class _ImageRecognitionState extends State<ImageRecognition> {
-  @override
   List convertation = [];
   bool loded = true;
   TextEditingController promptController = TextEditingController();
 
   int lodedsreen = 0;
   late File file;
+
   void getfile() async {
-    String summery = await ImageRecognitionServices.Recognize(context, file);
-    convertation.add(summery);
-    setState(() {
-      lodedsreen = 1;
-    });
+    // Use camera to take a photo
+    File? capturedImage = await CameraService.takePhoto(context);
+
+    if (capturedImage != null) {
+      file = capturedImage;
+      setState(() {
+        lodedsreen = 2; // Show loading indicator
+      });
+
+      // Process the image with Image Recognition service
+      String summery = await ImageRecognitionServices.Recognize(context, file);
+      convertation.add(summery);
+
+      setState(() {
+        lodedsreen = 1; // Show results
+      });
+    } else {
+      // User canceled or there was an error
+      setState(() {
+        lodedsreen = 0; // Return to initial state
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('No image was captured. Please try again.'),
+        ),
+      );
+    }
   }
 
+  @override
   Widget build(BuildContext context) {
-    double screen_w = MediaQuery.of(context).size.width;
-    double screen_h = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     String textinput = "";
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          background(screen_w, screen_h),
+          background(screenWidth, screenHeight),
           Container(
-            width: screen_w,
-            height: screen_h,
+            width: screenWidth,
+            height: screenHeight,
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -53,12 +77,12 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withAlpha(51), // 0.2 opacity = 51 alpha
                         borderRadius:
                             const BorderRadius.all(Radius.circular(15.0)),
                       ),
                       height: MyFontSizes.appnamesize + 25,
-                      width: screen_w,
+                      width: screenWidth,
                       child: Center(
                         child: Text(
                           MyStr.appname,
@@ -70,7 +94,7 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                     ),
                   ),
                   SizedBox(
-                    height: screen_h / 40,
+                    height: screenHeight / 40,
                   ),
                   Align(
                     alignment: Alignment.topCenter,
@@ -90,8 +114,8 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                             });
                             getfile();
                           },
-                          child: boxw(screen_w + screen_w / 1.5, screen_h - 100,
-                              "add.png", "Add Image", ""),
+                          child: boxw(screenWidth + screenWidth / 1.5, screenHeight - 100,
+                              "camera.png", "Take Photo", ""),
                         )
                       : Container(),
                   SizedBox(
@@ -142,12 +166,12 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                                       padding: const EdgeInsets.all(8.0),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.white.withOpacity(0.2),
+                                          color: Colors.white.withAlpha(51), // 0.2 opacity = 51 alpha
                                           borderRadius: const BorderRadius.all(
                                               Radius.circular(15.0)),
                                         ),
                                         // height: MyFontSizes.appnamesize + 25,
-                                        width: screen_w,
+                                        width: screenWidth,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
@@ -195,7 +219,7 @@ class _ImageRecognitionState extends State<ImageRecognition> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
-                  width: screen_w,
+                  width: screenWidth,
                   height: 75,
                   child: Row(children: [
                     Expanded(
