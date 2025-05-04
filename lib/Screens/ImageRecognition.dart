@@ -35,8 +35,8 @@ class _ImageRecognitionState extends State<ImageRecognition> {
         lodedsreen = 2; // Show loading indicator
       });
 
-      // Process the image with Image Recognition service
-      String summery = await ImageRecognitionServices.Recognize(context, file);
+      // Process the image with Image Recognition service using compression
+      String summery = await ImageRecognitionServices.compressAndRecognize(context, file);
       convertation.add(summery);
 
       setState(() {

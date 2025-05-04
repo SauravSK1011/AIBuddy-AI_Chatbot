@@ -1,17 +1,14 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import 'widgets/background.dart';
 
 import 'Constants/MyColors.dart';
 import 'Constants/MyFontSizes.dart';
-import 'Screens/ImageGen.dart';
 import 'Screens/ImageRecognition.dart';
 import 'Screens/WebPageSummary.dart';
 import 'Screens/fileSummary.dart';
 import 'Screens/ocr.dart';
+import 'Screens/LocalQuestionAnsweringScreen.dart';
 import 'widgets/box.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,12 +22,41 @@ class HomePage extends StatefulWidget {
 
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the ML Kit image labeler
+    _initializeMLServices();
+  }
 
+  @override
+  void dispose() {
+    // Clean up ML Kit resources
+    _disposeMLServices();
+    super.dispose();
+  }
+
+  // Initialize ML Kit services
+  void _initializeMLServices() {
+    // Nothing to initialize for the image labeler as it's created on demand
+    debugPrint('ML Kit services initialized');
+  }
+
+  // Dispose ML Kit services
+  void _disposeMLServices() {
+    // Clean up resources
+    try {
+      // This will be called when the app is closed
+      debugPrint('Cleaning up ML Kit resources');
+    } catch (e) {
+      debugPrint('Error disposing ML Kit resources: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    double screen_w = MediaQuery.of(context).size.width;
-    double screen_h = MediaQuery.of(context).size.height;
+    double screenW = MediaQuery.of(context).size.width;
+    double screenH = MediaQuery.of(context).size.height;
 
 
     return SafeArea(
@@ -38,130 +64,139 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.black,
         body: Stack(
           children: [
-            background(screen_w, screen_h),
-            Container(
-              width: screen_w,
-              height: screen_h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withAlpha(50),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(15.0)),
-                      ),
-                      height: MyFontSizes.appnamesize + 25,
-                      width: screen_w,
-                      child: Center(
-                        child: Text(
-                          MyStr.appname,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: MyFontSizes.appnamesize),
+            background(screenW, screenH),
+            SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: SizedBox(
+                width: screenW,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withAlpha(50),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(15.0)),
+                        ),
+                        height: MyFontSizes.appnamesize + 25,
+                        width: screenW,
+                        child: Center(
+                          child: Text(
+                            MyStr.appname,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: MyFontSizes.appnamesize),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Column(
-                    children: [
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: screen_w / 15,
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        // AI Features Section
+                        Container(
+                          width: screenW / 1.2,
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple.withAlpha(100),
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const WebPageSummary()),
-                              );
-                            },
-                            child: boxw(screen_w, screen_h, "web-link.png",
-                                "Web Page Summary", ""),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "AI Features",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+
+                              // Chat Interface
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LocalQuestionAnsweringScreen(),
+                                    ),
+                                  );
+                                },
+                                child: boxw(screenW, screenH, "ai-application.png", "Chat Interface", "Talk with AI assistant"),
+                              ),
+                              const SizedBox(height: 15),
+
+                              // Image Recognition
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const ImageRecognition(),
+                                    ),
+                                  );
+                                },
+                                child: boxw(screenW, screenH, "picture.png", "Image Recognition", "Identify objects in images"),
+                              ),
+                              const SizedBox(height: 15),
+
+                              // URL Summarization
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const WebPageSummary(),
+                                    ),
+                                  );
+                                },
+                                child: boxw(screenW, screenH, "web-link.png", "URL Summarization", "Summarize web content"),
+                              ),
+                              const SizedBox(height: 15),
+
+                              // OCR
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const OcrScreen(),
+                                    ),
+                                  );
+                                },
+                                child: boxw(screenW, screenH, "camera.png", "OCR", "Extract text from images"),
+                              ),
+                              const SizedBox(height: 15),
+
+                              // File Summary
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const FileSummary(),
+                                    ),
+                                  );
+                                },
+                                child: boxw(screenW, screenH, "file-and-folder.png", "File Summary", "Summarize document content"),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: screen_w / 15,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ImageRecognition()),
-                              );
-                            },
-                            child: boxw(screen_w, screen_h, "picture.png",
-                                "Image Recognition", ""),
-                          ),
-                          SizedBox(
-                            width: screen_w / 15,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: screen_w / 15,
-                          ),
-                          InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const OcrScreen()),
-                                );
-                              },
-                              child: boxw(
-                                  screen_w, screen_h, "camera.png", "Text to Image", "")),
-                          SizedBox(
-                            width: screen_w / 15,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const FileSummary()),
-                              );
-                            },
-                            child: boxw(screen_w, screen_h,
-                                "file-and-folder.png", "Files Summary", ""),
-                          ),
-                          SizedBox(
-                            width: screen_w / 15,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ImageGen()),
-                          );
-                        },
-                        child: boxwlong(screen_w, screen_h,
-                            "ai-application.png", "Image Generator", ""),
-                      ),
-                    ],
-                  )
-                ],
+                        ),
+
+                        // Add padding at the bottom for better scrolling
+                        const SizedBox(height: 30),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ],
@@ -172,36 +207,4 @@ class _HomePageState extends State<HomePage> {
 }
 
 
-Widget boxwlong(double screenW, double screenH, String imageName,
-    String oprationName, String description) {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.white.withAlpha(50),
-      borderRadius: const BorderRadius.all(Radius.circular(15.0)),
-    ),
-    width: screenW / 1.2,
-    height: screenH / 7.5,
-    child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: 10,
-        ),
-        Image.asset("assets/images/$imageName", width: screenW / 8),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            oprationName,
-            style: TextStyle(
-                color: Mycolors.textcolor, fontSize: MyFontSizes.titletextsize),
-          ),
-        ),
-        Text(
-          description,
-          style: TextStyle(
-              color: Mycolors.textcolor, fontSize: MyFontSizes.textsixe),
-        )
-      ],
-    ),
-  );
-}
+

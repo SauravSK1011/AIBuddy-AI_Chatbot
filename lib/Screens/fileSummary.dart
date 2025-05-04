@@ -33,8 +33,8 @@ class _FileSummaryState extends State<FileSummary> {
         lodedsreen = 2; // Show loading indicator
       });
 
-      // Process the image with File Summary service
-      String summery = await FileServices.myfilesummary(context, file);
+      // Process the image with File Summary service using compression
+      String summery = await FileServices.compressAndSendSummary(context, file);
       convertation.add(summery);
 
       setState(() {

@@ -33,8 +33,8 @@ class _OcrScreenState extends State<OcrScreen> {
         lodedsreen = 2; // Show loading indicator
       });
 
-      // Process the image with OCR
-      String summery = await OcrServices.gettext(context, file);
+      // Process the image with OCR using compression
+      String summery = await OcrServices.compressAndOcr(context, file);
       convertation.add(summery);
 
       setState(() {
@@ -110,7 +110,7 @@ class _OcrScreenState extends State<OcrScreen> {
                             });
                             getfile();
                           },
-                          child: boxw(screenWidth + screenWidth / 1.5, screenHeight - 100,
+                          child: boxw(screenWidth, screenHeight / 4,
                               "camera.png", "Take Photo", ""),
                         )
                       : Container(),
@@ -196,46 +196,50 @@ class _OcrScreenState extends State<OcrScreen> {
                                       );
                                     }),
                               ),
-                              SizedBox(
-                                height: 100,
+                              // Add padding at the bottom to prevent overlap with the input bar
+                              const SizedBox(
+                                height: 70,
                               )
                             ],
                           ),
                         )
                       : lodedsreen == 2
-                          ? Center(child: CircularProgressIndicator())
-                          : Center(),
+                          ? const Center(child: CircularProgressIndicator())
+                          : const Center(),
                 ]),
           ),
-        lodedsreen==2||lodedsreen==1  ?Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-                padding: const EdgeInsets.all(8.0),
+        lodedsreen==2||lodedsreen==1 ? SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
                 child: Container(
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
                   width: screenWidth,
-                  height: 75,
-                  child: Row(children: [
-                    Expanded(
+                  height: 60, // Reduced height
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
                         child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Type a Prompt',
-                        ),
-                        controller: promptController,
-                        onChanged: (text) {
-                          textinput = text;
-                        },
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: TextField(
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Type a Prompt',
+                              contentPadding: EdgeInsets.symmetric(vertical: 10.0),
+                            ),
+                            controller: promptController,
+                            onChanged: (text) {
+                              textinput = text;
+                            },
+                          ),
+                        )
                       ),
-                    )),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    InkWell(
+                      const SizedBox(width: 5),
+                      InkWell(
                         onTap: () async {
                           promptController.clear();
                           convertation.add(textinput);
@@ -269,17 +273,19 @@ class _OcrScreenState extends State<OcrScreen> {
                           });
                         },
                         child: loded
-                            ? Icon(
+                            ? const Icon(
                                 Icons.send,
                                 color: Colors.black,
                               )
-                            : CircularProgressIndicator()),
-                    SizedBox(
-                      width: 10,
-                    )
-                  ]),
-                )),
-          ):Container()
+                            : const CircularProgressIndicator()
+                      ),
+                      const SizedBox(width: 10),
+                    ]
+                  ),
+                )
+              ),
+            ),
+          ) : Container()
         ],
       ),
     ));

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CameraService {
@@ -10,15 +11,22 @@ class CameraService {
 
       // Initialize image picker
       final ImagePicker picker = ImagePicker();
-      
+
       // Take a picture
       final XFile? photo = await picker.pickImage(
         source: ImageSource.camera,
         imageQuality: 80, // Adjust quality as needed
       );
-      
+
       if (photo != null) {
-        return File(photo.path);
+        // On web, we need to handle XFile differently
+        if (kIsWeb) {
+          // For web, we create a dummy File object
+          // In a real implementation, you would handle the XFile data differently
+          return File(photo.path);
+        } else {
+          return File(photo.path);
+        }
       } else {
         // User canceled the camera
         ScaffoldMessenger.of(context).showSnackBar(
@@ -36,23 +44,30 @@ class CameraService {
           backgroundColor: Colors.red,
         ),
       );
-      print('Error taking photo: $e');
+      debugPrint('Error taking photo: $e');
       return null;
     }
   }
-  
+
   // Alternative method to pick from gallery if needed
   static Future<File?> pickFromGallery(BuildContext context) async {
     try {
       final ImagePicker picker = ImagePicker();
-      
+
       final XFile? image = await picker.pickImage(
         source: ImageSource.gallery,
         imageQuality: 80,
       );
-      
+
       if (image != null) {
-        return File(image.path);
+        // On web, we need to handle XFile differently
+        if (kIsWeb) {
+          // For web, we create a dummy File object
+          // In a real implementation, you would handle the XFile data differently
+          return File(image.path);
+        } else {
+          return File(image.path);
+        }
       } else {
         // User canceled the picker
         ScaffoldMessenger.of(context).showSnackBar(
@@ -69,7 +84,7 @@ class CameraService {
           backgroundColor: Colors.red,
         ),
       );
-      print('Error picking from gallery: $e');
+      debugPrint('Error picking from gallery: $e');
       return null;
     }
   }
